@@ -18,7 +18,7 @@ def main():
                         help='Print more data.', action='store_true')
     parser.add_argument('-c', '--corrupted',
                         help='Parse files with ImageMagick if JPGs are corrupted.', action='store_true')
-    parser.add_argument('-r', '--rotate', nargs='?', type=int, default=-1,
+    parser.add_argument('-r', '--rotate', nargs='?', type=int,
                         choices=range(0, 3), help='Rotate PDF by 90(0)|180(1)|270(2) degrees clockwise.')
     parser.add_argument('-q', '--quality', nargs='?', type=int,
                         default=90, help='JPEG compression quality.')
@@ -81,7 +81,7 @@ def cropimages(folder, quality, rotate):
             f'Creating page {i} from image {mappedPages[i]//2:03d}, quality {quality:03d}.')
         file = files[mappedPages[i]//2]
         img = cv2.imread(str(Path(folder, file)))
-        if rotate != -1:
+        if rotate:
             img = cv2.rotate(img, rotate)
         height, width, _ = img.shape
 
